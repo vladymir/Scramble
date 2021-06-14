@@ -4,9 +4,7 @@
                 [proto-repl "0.3.1"]
                 [binaryage/devtools "0.9.10"]
                 [reagent "0.8.1"]
-                [re-frame "0.10.6"]
-
-                ]
+                [re-frame "0.10.6"]]
 
  :nrepl        {:port 3333}
 
@@ -19,4 +17,9 @@
                 :compiler-options {:closure-defines {re-frame.trace/trace-enabled? true}}
 
                 :devtools {:http-root   "public"
-                           :http-port   3000}}}}
+                           :http-port   3000}}
+
+          :test {:target :node-test
+                 :output-to "out/node-tests.js"
+                 :ns-regexp "app.test$"
+                 :autorun true}}}

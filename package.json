@@ -9,6 +9,7 @@
   },
   "scripts": {
     "dev": "shadow-cljs watch app",
+    "test": "shadow-cljs compile test",
     "release": "shadow-cljs release app",
     "server": "shadow-cljs server",
     "clean": "rm -rf target && rm -rf public/js",

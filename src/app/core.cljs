@@ -28,8 +28,8 @@
   [:a {:class "button"
        :href "#"
        :on-click (fn [e]
-                   (let [str1 (:str1 @results) ;(get-val-by-id "str1")
-                         str2 (:str2 @results)] ;(get-val-by-id "str2")]
+                   (let [str1 (:str1 @results)
+                         str2 (:str2 @results)]
                      (rf/dispatch [:scramble {:str1 str1
                                               :str2 str2}])))}
    "Scramble?"])
