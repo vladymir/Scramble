@@ -1,14 +1,13 @@
 (ns app.core
   (:require [reagent.core :as r]
             [app.helpers :as h]
-            [re-frame.core :as rf]
-            [app.db]))
+            [re-frame.core :as rf]))
 
 
 (def results (r/atom {:results []}))
 
 (defn row [c1 c2 c3]
-  [:div {:class "row"}
+  [:div {:class "row" :key (random-uuid)}
    [:div {:class "column"}
     [:p c1]]
    [:div {:class "column"}
@@ -44,8 +43,12 @@
  (fn [_ [_ result]]
    (let [str1 (:str1 result)
          str2 (:str2 result)
-         scr (str (h/scramble? str1 str2))]
-     (swap! results update-in [:results] conj (assoc result :result scr)))))
+         scr (str (h/scramble? str1 str2))
+         res (-> result
+                 (assoc :result scr)
+                 (assoc :key (random-uuid)))]
+     (swap! results update-in [:results] conj res))))
+
 
 (defn input [id type label]
   [:div
@@ -91,7 +94,6 @@
 
 (defn ^:dev/after-load start
   []
-  (rf/dispatch-sync [:initialize-db])
   (r/render [app]
             (.getElementById js/document "app")))
 
